@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        if(null != savedInstanceState){
-//            inputPassword.setText(savedInstanceState.getString("password"));
-//        }
     }
 
 

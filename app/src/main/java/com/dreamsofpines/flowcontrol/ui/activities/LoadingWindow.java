@@ -16,7 +16,6 @@ public class LoadingWindow extends AppCompatActivity {
 
     private static final String MY_SETTINGS = "my_settings";
     private SharedPreferences mySetting;
-    private SharedPreferences.Editor edit;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -29,11 +28,8 @@ public class LoadingWindow extends AppCompatActivity {
         // Check the first open
         boolean hasVisited = mySetting.getBoolean("hasVisited", false);
         if(!hasVisited){
-
             // insert layout with registration !!!
-            edit = mySetting.edit();
-            edit.putBoolean("hasVisited",true);
-            edit.commit();
+            mySetting.edit().putBoolean("hasVisited",true).commit();
 
         } else {
             Intent intent = new Intent(LoadingWindow.this,MainActivity.class);
