@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.MainActivity">
+
+    <!-- Background image -->
+    <ImageView
+        android:id="@+id/backgroundMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/mountain2"
+        android:scaleType="centerCrop">
+    </ImageView>
+
+    <!-- Text logo -->
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/mycosts"
+        android:textSize="@dimen/font_size_38"
+        android:textColor="@color/lighterBlue">
+    </TextView>
+
+    <!-- layout with password -->
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp">
+        <LinearLayout
+            android:id="@+id/linearPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/medium_space_21"
+            android:orientation="horizontal">
+
+            <!-- Image lock -->
+            <ImageView
+                android:id="@+id/lockImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_space_10"
+                android:layout_marginLeft="@dimen/medium_space_32"
+                android:layout_marginRight="@dimen/small_space_10"
+                android:src="@drawable/lock_outline"/>
+
+            <!-- Input password -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="@dimen/size_250"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/lighterBlue"
+                    android:hint="@string/password"
+                    android:textColorHint="@color/lighterBlue">
+                </EditText>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Button sign -->
+        <TextView
+                android:id="@+id/buttonEnter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearPasswordLayout"
+                android:layout_marginTop="@dimen/medium_space_21"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/medium_space_32"
+                android:text="@string/enter"
+                android:clickable="true"
+                android:textColor="@color/lighterBlue"
+                android:textSize="@dimen/font_size_27"/>
+    </RelativeLayout>
+</RelativeLayout>
