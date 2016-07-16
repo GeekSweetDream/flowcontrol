@@ -8,6 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- window begin loading -->
+        <activity android:name=".ui.activities.LoadingWindow"></activity>
+
+        <!-- window sign -->
         <activity
             android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait">
@@ -17,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- window home -->
         <activity android:name=".ui.activities.HomePages"></activity>
+
     </application>
 
 </manifest>

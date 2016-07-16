@@ -7,5 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.LoadingWindow">
 
+    <!-- background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lighterBlue"/>
+
+    <!-- Imagelogo -->
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:background="@color/lightBlue"/>
 
 </RelativeLayout>
