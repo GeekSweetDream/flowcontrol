@@ -3,7 +3,9 @@ package com.dreamsofpines.flowcontrol.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,6 +19,7 @@ public class LoadingWindow extends AppCompatActivity {
     private static final String MY_SETTINGS = "my_settings";
     private static final String MY_PASSWORD = "my_password";
     private static final String MY_NICKNAME = "my_nickname";
+    private Intent intent;
 
     public static String getMyNickname() {
         return MY_NICKNAME;
@@ -37,9 +40,17 @@ public class LoadingWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_window);
 
+        int secondDelay = 1;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(intent);
+                finish();
+            }
+        },secondDelay * 1000);
+
         // Create settings file
         mySetting = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE);
-
         // Check the first open
         boolean hasVisited = mySetting.getBoolean("hasVisited", false);
         if(!hasVisited){
@@ -48,13 +59,18 @@ public class LoadingWindow extends AppCompatActivity {
             mySetting.edit().putBoolean("hasVisited",true).apply();
             mySetting.edit().putString(MY_PASSWORD,"78321").apply();
 
-            Intent intent = new Intent(LoadingWindow.this,MainActivity.class);
-            startActivity(intent);
+            intent = new Intent(LoadingWindow.this,HomePages.class);
 
         } else {
-            Intent intent = new Intent(LoadingWindow.this,MainActivity.class);
-            startActivity(intent);
+            intent = new Intent(LoadingWindow.this,MainActivity.class);
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     @Override
@@ -86,4 +102,5 @@ public class LoadingWindow extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
+
 }

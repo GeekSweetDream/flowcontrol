@@ -11,7 +11,7 @@
         android:id="@+id/backgroundMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/mountain2"
+        android:src="@mipmap/m32"
         android:scaleType="centerCrop">
     </ImageView>
 
