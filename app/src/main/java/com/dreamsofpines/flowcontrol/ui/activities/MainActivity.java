@@ -1,6 +1,9 @@
 package com.dreamsofpines.flowcontrol.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,26 +14,21 @@ import android.widget.TextView;
 
 import com.dreamsofpines.flowcontrol.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView enterBtn;
-    private EditText inputPassword;
+    private TextInputLayout inputPassword;
+    private SharedPreferences mySetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        inputPassword = (EditText) findViewById(R.id.editLogin);
+        mySetting = getSharedPreferences(LoadingWindow.getMySettings(), Context.MODE_PRIVATE);
+        inputPassword = (TextInputLayout) findViewById(R.id.passwordWrapper);
         enterBtn = (TextView) findViewById(R.id.buttonEnter);
-        enterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,HomePages.class);
-                startActivity(intent);
-            }
-        });
+        enterBtn.setOnClickListener(this);
     }
-
 
     @Override
     protected void onPause() {
@@ -61,5 +59,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         //outState.putString("password", String.valueOf(inputPassword.getText()))
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if(mySetting.contains(LoadingWindow.getMyPASSWORD())){
+            String password = mySetting.getString(LoadingWindow.getMyPASSWORD(),"");
+            if(password.compareTo(inputPassword.getEditText().getText().toString()) == 0){
+                inputPassword.setErrorEnabled(false);
+                Intent intent = new Intent(MainActivity.this,HomePages.class);
+                startActivity(intent);
+            } else {
+                inputPassword.setError("Wrong password");
+            }
+        }
     }
 }

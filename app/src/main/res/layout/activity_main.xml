@@ -11,7 +11,7 @@
         android:id="@+id/backgroundMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/mountain2"
+        android:src="@mipmap/m32"
         android:scaleType="centerCrop">
     </ImageView>
 
@@ -53,6 +53,7 @@
 
             <!-- Input password -->
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordWrapper"
                 android:layout_width="@dimen/size_250"
                 android:layout_height="wrap_content">
                 <EditText
