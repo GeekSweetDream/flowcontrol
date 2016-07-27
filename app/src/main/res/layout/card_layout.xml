@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="@dimen/small_space_10">
+<android.support.v7.widget.CardView
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="25dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+        <ImageView
+            android:id="@+id/serviceLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@color/colorBlack"
+            android:layout_marginLeft="@dimen/medium_space_32"/>
+        <TextView
+            android:id="@+id/dateCosts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="123"
+            android:textSize="15dp"
+            android:background="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/costs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/dateCosts"
+            android:layout_toLeftOf="@id/dateCosts"
+            android:layout_marginRight="@dimen/small_space_10"
+            android:layout_centerVertical="true"
+            android:text="123"
+            android:textSize="@dimen/font_size_27"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+</LinearLayout>
