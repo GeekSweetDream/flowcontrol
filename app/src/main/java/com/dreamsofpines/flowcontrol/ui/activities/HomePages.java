@@ -1,18 +1,21 @@
 package com.dreamsofpines.flowcontrol.ui.activities;
 
-import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.dreamsofpines.flowcontrol.R;
+import com.dreamsofpines.flowcontrol.data.database.CostBaseHelper;
+import com.dreamsofpines.flowcontrol.data.database.CostCursorWrapper;
+import com.dreamsofpines.flowcontrol.data.database.CostDbSchema.CostTable;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
 import com.dreamsofpines.flowcontrol.ui.adapters.CostsAdapter;
-import com.dreamsofpines.flowcontrol.ui.fragments.ListCoastFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,12 @@ import java.util.List;
  * Created by ThePupsick on 13.07.16.
  */
 public class HomePages extends AppCompatActivity {
+
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
+
+    final String LOG_TAG = "myLog";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,21 +40,63 @@ public class HomePages extends AppCompatActivity {
         RecyclerView.LayoutManager lim = new LinearLayoutManager(this);
         recyclerViewVert.setLayoutManager(lim);
         recyclerViewVert.setHasFixedSize(true);
-
-
+        mContext = this.getApplicationContext();
+        mDatabase = new CostBaseHelper(mContext).getWritableDatabase();
+        insertInDB();
         CostsAdapter ca = new CostsAdapter(createList());
         recyclerViewVert.setAdapter(ca);
 
 
     }
 
+    public static ContentValues getContentValues(Cost cost){
+        ContentValues values = new ContentValues();
+        values.put(CostTable.Cols.COST, cost.getPayment());
+        values.put(CostTable.Cols.DATE, cost.getDate());
+        return values;
+    }
+
+    public void addCost(Cost cost){
+        ContentValues values = getContentValues(cost);
+        mDatabase.insert(CostTable.NAME,null,values);
+    }
+
+    public void insertInDB(){
+        addCost(new Cost("23","04.04.2016","-20","11:23"));
+        addCost(new Cost("23","03.04.2016","-2000","15:23"));
+        addCost(new Cost("23","10.04.2016","-2342","10:23"));
+        addCost(new Cost("23","10.04.2016","-2123","10:34"));
+        addCost(new Cost("23","10.04.2016","-2","20:00"));
+        addCost(new Cost("23","10.04.2016","-23","10:13"));
+        addCost(new Cost("23","10.04.2016","-245","05:03"));
+        addCost(new Cost("23","10.04.2016","-2","01:53"));
+    }
+
+    private CostCursorWrapper queryCosts(String whereClause, String[] whereArgs){
+        Cursor cursor = mDatabase.query(
+                CostTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                "_id DESC"
+                );
+        return new CostCursorWrapper(cursor);
+    }
+
     private List<Cost> createList(){
         List<Cost> res = new ArrayList<>();
-        res.add(new Cost("23","03.04.2016","-2000","15:23"));
-        res.add(new Cost("23","04.04.2016","-20","11:23"));
-        res.add(new Cost("23","10.04.2016","-2","10:23"));
-        res.add(new Cost("23","10.04.2011","-1234","00:03"));
-        res.add(new Cost("23","10.04.2016","-5576","16:00"));
+        CostCursorWrapper cursor = queryCosts(null, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                res.add(cursor.getCost());
+                cursor.moveToNext();
+            }
+        }finally{
+                cursor.close();
+            }
         return res;
     }
 

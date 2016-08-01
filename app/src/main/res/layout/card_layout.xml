@@ -9,8 +9,7 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="25dp">
+    card_view:cardCornerRadius="8dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,17 +27,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/small_space_10"
             android:text="123"
-            android:textSize="15dp"
-            android:background="@color/colorAccent"/>
+            android:textSize="15sp"/>
         <TextView
             android:id="@+id/costs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/dateCosts"
-            android:layout_toLeftOf="@id/dateCosts"
-            android:layout_marginRight="@dimen/small_space_10"
+            android:layout_toEndOf="@id/serviceLogo"
+            android:layout_toRightOf="@id/serviceLogo"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/medium_space_21"
             android:text="123"
             android:textSize="@dimen/font_size_27"/>
     </RelativeLayout>

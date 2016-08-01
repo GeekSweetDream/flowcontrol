@@ -60,9 +60,10 @@
                     android:id="@+id/editLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:textColor="@color/lighterBlue"
                     android:hint="@string/password"
+                    android:text="78321"
                     android:textColorHint="@color/lighterBlue">
                 </EditText>
             </android.support.design.widget.TextInputLayout>

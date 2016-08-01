@@ -30,7 +30,8 @@
 
         <!-- window home -->
         <activity
-            android:name=".ui.activities.HomePages">
+            android:name=".ui.activities.HomePages"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

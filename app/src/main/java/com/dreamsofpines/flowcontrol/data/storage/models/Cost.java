@@ -13,15 +13,16 @@ public class Cost {
     private String date;
     private String time;
 
+    public Cost() {
+        payment = "0";
+        imageService = "null";
+        date = "00000";
+    }
+
     public Cost(String imageService, String date, String payment, String time) {
         this.imageService = imageService;
         this.date = date;
         this.payment = payment;
-        this.time = time;
-    }
-
-    private String glueDate(String time, String date){
-        return date + " " + time;
     }
 
     public String getPayment() {
@@ -29,10 +30,26 @@ public class Cost {
     }
 
     public String getDate() {
-        return glueDate(time,date);
+        return date;
     }
 
     public String getImageService() {
         return imageService;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void setImageService(String imageService) {
+        this.imageService = imageService;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
