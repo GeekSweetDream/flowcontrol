@@ -5,17 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.database.CostBaseHelper;
 import com.dreamsofpines.flowcontrol.data.database.CostCursorWrapper;
 import com.dreamsofpines.flowcontrol.data.database.CostDbSchema.CostTable;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
-import com.dreamsofpines.flowcontrol.ui.adapters.CostsAdapter;
+import com.dreamsofpines.flowcontrol.ui.fragments.EmptyListCostFragment;
+import com.dreamsofpines.flowcontrol.ui.fragments.ListCoastFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,30 +23,40 @@ import java.util.List;
 /**
  * Created by ThePupsick on 13.07.16.
  */
-public class HomePages extends AppCompatActivity {
+public class HomePages extends FragmentActivity {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
-
-    final String LOG_TAG = "myLog";
-
+    private EmptyListCostFragment mEmptyListCostFragment;
+    private ListCoastFragment mListCoastFragment;
+    private List<Cost> mCosts;
+    private FragmentTransaction mFragmentTransaction;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_pages);
 
-        RecyclerView recyclerViewVert = (RecyclerView) findViewById(R.id.recViewVert);
-        RecyclerView.LayoutManager lim = new LinearLayoutManager(this);
-        recyclerViewVert.setLayoutManager(lim);
-        recyclerViewVert.setHasFixedSize(true);
+//        RecyclerView recyclerViewVert = (RecyclerView) findViewById(R.id.recViewVert);
+//        RecyclerView.LayoutManager lim = new LinearLayoutManager(this);
+//        recyclerViewVert.setLayoutManager(lim);
+//        recyclerViewVert.setHasFixedSize(true);
+
         mContext = this.getApplicationContext();
         mDatabase = new CostBaseHelper(mContext).getWritableDatabase();
         insertInDB();
-        CostsAdapter ca = new CostsAdapter(createList());
-        recyclerViewVert.setAdapter(ca);
+        mCosts = createList();
+        mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if(mCosts.size() == 0) {
+            mEmptyListCostFragment = new EmptyListCostFragment();
+            mFragmentTransaction.add(R.id.homeFrameLayout,mEmptyListCostFragment);
+        }else {
+            mListCoastFragment = new ListCoastFragment();
+            mListCoastFragment.setCosts(mCosts);
+            mFragmentTransaction.add(R.id.homeFrameLayout,mListCoastFragment);
 
-
+        }
+        mFragmentTransaction.commit();
     }
 
     public static ContentValues getContentValues(Cost cost){

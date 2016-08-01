@@ -26,7 +26,7 @@
             android:scrollbars="horizontal">
         </android.support.v7.widget.RecyclerView> -->
     </LinearLayout>
-    <RelativeLayout
+   <!-- <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -38,14 +38,17 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical">
         </android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
-    <!--<fragment
+    </RelativeLayout> -->
+    <FrameLayout
+        android:id="@+id/homeFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+  <!--  <fragment
         android:id="@+id/flowLayout"
         android:name="com.dreamsofpines.flowcontrol.ui.fragments.ListCoastFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/list_cost_fragment">
-    </fragment>-->
-
-
+    </fragment> -->
 </LinearLayout>
