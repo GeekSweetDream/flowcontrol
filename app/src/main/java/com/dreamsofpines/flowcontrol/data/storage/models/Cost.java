@@ -14,9 +14,9 @@ public class Cost {
     private String time;
 
     public Cost() {
-        payment = "0";
-        imageService = "null";
-        date = "00000";
+        payment = "";
+        imageService = "";
+        date = "";
     }
 
     public Cost(String imageService, String date, String payment, String time) {

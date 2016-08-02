@@ -9,5 +9,7 @@
     <!-- Colors for theme -->
     <color name="lighterBlue">#B3E5FC</color>
     <color name="lightBlue">#03A9F4</color>
+    
+    <color name="lightGrey">#AAAAAA</color>
 
 </resources>

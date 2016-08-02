@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activities.HomePages"
     android:orientation="vertical"
-    android:background="@color/lighterBlue">
-    <LinearLayout
-        android:id="@+id/cardLayout"
-        android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:orientation="horizontal"
-        android:background="@color/colorWhite"
-        android:elevation="10dp"
-        android:gravity="center">
-        <View
-            android:layout_width="230dp"
-            android:layout_height="150dp"
-            android:background="@color/lighterBlue">
-        </View>
-        <!--<android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="horizontal">
-        </android.support.v7.widget.RecyclerView> -->
-    </LinearLayout>
-   <!-- <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recViewVert"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
-    </RelativeLayout> -->
+    android:background="@color/colorWhite">
     <FrameLayout
         android:id="@+id/homeFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/cardLayout"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/card_drawable"
+            android:elevation="10dp"
+            android:layout_gravity="center_horizontal">
+        </ImageView>
+        <View
+            android:id="@+id/home_menu_for_card"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/small_space_10"
+            android:background="@color/lightGrey"
+            android:visibility="invisible"
+            android:elevation="10dp">
+        </View>
+        <!--    <LinearLayout
+            android:id="@+id/cardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/colorWhite"
+            android:elevation="10dp"
+            android:gravity="center">
+            <View
+                android:layout_width="230dp"
+                android:layout_height="150dp"
+                android:background="@color/lighterBlue">
+            </View>
+        </LinearLayout> -->
+
     </FrameLayout>
-  <!--  <fragment
-        android:id="@+id/flowLayout"
-        android:name="com.dreamsofpines.flowcontrol.ui.fragments.ListCoastFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/list_cost_fragment">
-    </fragment> -->
-</LinearLayout>
+
+</RelativeLayout>

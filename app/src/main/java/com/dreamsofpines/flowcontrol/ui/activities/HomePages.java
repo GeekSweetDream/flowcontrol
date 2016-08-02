@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.database.CostBaseHelper;
@@ -31,30 +33,28 @@ public class HomePages extends FragmentActivity {
     private ListCoastFragment mListCoastFragment;
     private List<Cost> mCosts;
     private FragmentTransaction mFragmentTransaction;
+    private View menu,card;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_pages);
 
-//        RecyclerView recyclerViewVert = (RecyclerView) findViewById(R.id.recViewVert);
-//        RecyclerView.LayoutManager lim = new LinearLayoutManager(this);
-//        recyclerViewVert.setLayoutManager(lim);
-//        recyclerViewVert.setHasFixedSize(true);
-
         mContext = this.getApplicationContext();
         mDatabase = new CostBaseHelper(mContext).getWritableDatabase();
-        insertInDB();
         mCosts = createList();
         mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        mEmptyListCostFragment = new EmptyListCostFragment();
+        mFragmentTransaction.add(R.id.homeFrameLayout,mEmptyListCostFragment);
         if(mCosts.size() == 0) {
-            mEmptyListCostFragment = new EmptyListCostFragment();
-            mFragmentTransaction.add(R.id.homeFrameLayout,mEmptyListCostFragment);
+            insertInDB();
+            insertInDB();
+            insertInDB();
+            insertInDB();
         }else {
             mListCoastFragment = new ListCoastFragment();
             mListCoastFragment.setCosts(mCosts);
-            mFragmentTransaction.add(R.id.homeFrameLayout,mListCoastFragment);
-
+            mFragmentTransaction.replace(R.id.homeFrameLayout,mListCoastFragment);
         }
         mFragmentTransaction.commit();
     }
@@ -80,6 +80,8 @@ public class HomePages extends FragmentActivity {
         addCost(new Cost("23","10.04.2016","-23","10:13"));
         addCost(new Cost("23","10.04.2016","-245","05:03"));
         addCost(new Cost("23","10.04.2016","-2","01:53"));
+        addCost(new Cost());
+        addCost(new Cost());
     }
 
     private CostCursorWrapper queryCosts(String whereClause, String[] whereArgs){

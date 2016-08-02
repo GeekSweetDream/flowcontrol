@@ -3,13 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:padding="@dimen/small_space_10">
+    android:layout_height="100dp">
 <android.support.v7.widget.CardView
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    card_view:cardCornerRadius="8dp">
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,5 +39,10 @@
             android:text="123"
             android:textSize="@dimen/font_size_27"/>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightGrey">
+    </View>
 </android.support.v7.widget.CardView>
 </LinearLayout>
