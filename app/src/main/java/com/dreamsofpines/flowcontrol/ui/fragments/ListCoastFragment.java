@@ -1,7 +1,5 @@
 package com.dreamsofpines.flowcontrol.ui.fragments;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
-import android.widget.LinearLayout;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
@@ -25,7 +21,9 @@ import java.util.List;
 public class ListCoastFragment extends Fragment  {
 
     private List<Cost> mCosts;
-    private View card,menu;
+    private View mainCard, listCards;
+    private boolean isTouchable = true;
+    private boolean loading = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,19 +36,22 @@ public class ListCoastFragment extends Fragment  {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_cost_fragment, container, false);
 
-        card = (View) getActivity().findViewById(R.id.cardLayout);
 
-        menu = (View) getActivity().findViewById(R.id.home_menu_for_card);
-        card.setOnTouchListener(new View.OnTouchListener() {
+        mainCard = (View) getActivity().findViewById(R.id.cardLayout);
+        listCards = (View) getActivity().findViewById(R.id.home_menu_for_card);
+
+        mainCard.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(menu.getVisibility() == View.INVISIBLE){
-                    menu.setVisibility(View.VISIBLE);
-                }else{
-                    menu.setVisibility(View.INVISIBLE);
+                if(isTouchable) {
+                    if (listCards.getVisibility() == View.INVISIBLE){
+                        listCards.setVisibility(View.VISIBLE);
+                    } else {
+                        listCards.setVisibility(View.INVISIBLE);
+                    }
                 }
                 return false;
             }
@@ -63,19 +64,19 @@ public class ListCoastFragment extends Fragment  {
         recyclerViewVert.setLayoutManager(lim);
         recyclerViewVert.setHasFixedSize(true);
 
-        recyclerViewVert.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        recyclerViewVert.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 5) {
-                    if(card.getVisibility() == View.VISIBLE) {
-                        card.startAnimation(cardHide);
+                if (dy > 0) {
+                    if ((mainCard.getVisibility() == View.VISIBLE) && (!loading)) {
+                        mainCard.startAnimation(cardHide);
                     }
 
                 }
-                if (dy < -5) {
-                    if(card.getVisibility() == View.INVISIBLE) {
-                        card.startAnimation(cardShow);
+                if (dy < 0) {
+                    if ((mainCard.getVisibility() == View.INVISIBLE) && (!loading)) {
+                        mainCard.startAnimation(cardShow);
                     }
                 }
             }
@@ -84,12 +85,16 @@ public class ListCoastFragment extends Fragment  {
         cardHide.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                card.setVisibility(View.VISIBLE);
+                mainCard.setVisibility(View.VISIBLE);
+                isTouchable = false;
+                loading = true;
+                listCards.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                card.setVisibility(View.INVISIBLE);
+                mainCard.setVisibility(View.INVISIBLE);
+                loading = false;
             }
 
             @Override
@@ -99,12 +104,15 @@ public class ListCoastFragment extends Fragment  {
         cardShow.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                card.setVisibility(View.INVISIBLE);
+                mainCard.setVisibility(View.INVISIBLE);
+                loading = true;
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                card.setVisibility(View.VISIBLE);
+                mainCard.setVisibility(View.VISIBLE);
+                isTouchable = true;
+                loading = false;
             }
 
             @Override
