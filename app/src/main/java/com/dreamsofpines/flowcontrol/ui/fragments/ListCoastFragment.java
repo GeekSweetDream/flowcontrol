@@ -40,7 +40,7 @@ public class ListCoastFragment extends Fragment  {
         View view = inflater.inflate(R.layout.list_cost_fragment, container, false);
 
 
-        mainCard = (View) getActivity().findViewById(R.id.cardLayout);
+        mainCard = (View) getActivity().findViewById(R.id.card_logo);
         listCards = (View) getActivity().findViewById(R.id.home_menu_for_card);
 
         mainCard.setOnTouchListener(new View.OnTouchListener() {
@@ -49,8 +49,10 @@ public class ListCoastFragment extends Fragment  {
                 if(isTouchable) {
                     if (listCards.getVisibility() == View.INVISIBLE){
                         listCards.setVisibility(View.VISIBLE);
+                        listCards.setClickable(true);
                     } else {
                         listCards.setVisibility(View.INVISIBLE);
+                        listCards.setClickable(false);
                     }
                 }
                 return false;

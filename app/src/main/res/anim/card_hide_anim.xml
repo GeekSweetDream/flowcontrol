@@ -3,13 +3,13 @@
     android:shareInterpolator="false">
 
     <translate
-        android:duration = "500"
+        android:duration = "300"
         android:fromXDelta="100%"
         android:toXDelta="0%">
     </translate>
 
     <alpha
-        android:startOffset = "300"
+        android:startOffset = "200"
         android:duration = "100"
         android:toAlpha="1"
         android:fromAlpha="0">

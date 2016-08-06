@@ -45,7 +45,7 @@ public class HomePages extends FragmentActivity {
         mCosts = createList();
         mFragmentTransaction = getSupportFragmentManager().beginTransaction();
         mEmptyListCostFragment = new EmptyListCostFragment();
-        mFragmentTransaction.add(R.id.homeFrameLayout,mEmptyListCostFragment);
+        mFragmentTransaction.add(R.id.frameForRecycleView,mEmptyListCostFragment);
         if(mCosts.size() == 0) {
             insertInDB();
             insertInDB();
@@ -54,7 +54,7 @@ public class HomePages extends FragmentActivity {
         }else {
             mListCoastFragment = new ListCoastFragment();
             mListCoastFragment.setCosts(mCosts);
-            mFragmentTransaction.replace(R.id.homeFrameLayout,mListCoastFragment);
+            mFragmentTransaction.replace(R.id.frameForRecycleView,mListCoastFragment);
         }
         mFragmentTransaction.commit();
     }

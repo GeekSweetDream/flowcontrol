@@ -8,43 +8,34 @@
     android:orientation="vertical"
     android:background="@color/colorWhite">
     <FrameLayout
-        android:id="@+id/homeFrameLayout"
+        android:id="@+id/frameForRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/cardLayout"
-            android:layout_width="250dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/card_drawable"
-            android:elevation="10dp"
-            android:layout_gravity="center_horizontal">
-        </ImageView>
-        <View
-            android:id="@+id/home_menu_for_card"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/small_space_10"
-            android:background="@color/lightGrey"
-            android:visibility="invisible"
-            android:elevation="10dp">
-        </View>
-        <!--    <LinearLayout
-            android:id="@+id/cardLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:background="@color/colorWhite"
-            android:elevation="10dp"
-            android:gravity="center">
-            <View
-                android:layout_width="230dp"
-                android:layout_height="150dp"
-                android:background="@color/lighterBlue">
-            </View>
-        </LinearLayout> -->
-
     </FrameLayout>
+    <fragment
+        android:id="@+id/card_logo"
+        android:name="com.dreamsofpines.flowcontrol.ui.fragments.CardLogoFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/card_view_fragment">
+    </fragment>
+    <View
+        android:id="@+id/home_menu_for_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="180dp"
+        android:background="@color/lightGrey"
+        android:visibility="invisible">
+    </View>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/medium_space_21"
+        android:layout_marginBottom="@dimen/medium_space_21"
+        android:background="@color/colorAccent"/>
 
 </RelativeLayout>
