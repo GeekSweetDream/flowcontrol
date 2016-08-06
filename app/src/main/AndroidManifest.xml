@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.dreamsofpines.flowcontrol">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dreamsofpines.flowcontrol">
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -33,6 +35,13 @@
             android:name=".ui.activities.HomePages"
             android:screenOrientation="portrait">
         </activity>
+
+        <receiver android:name=".data.storage.models.ParserMessagesReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="android.provider.Telephony.SMS_RECIEVED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".data.storage.models.SmsServis"/>
 
     </application>
 

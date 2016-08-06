@@ -1,5 +1,6 @@
 package com.dreamsofpines.flowcontrol.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
+import com.dreamsofpines.flowcontrol.data.storage.models.SmsServis;
 import com.dreamsofpines.flowcontrol.ui.adapters.CostsAdapter;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class ListCoastFragment extends Fragment  {
     private View mainCard, listCards;
     private boolean isTouchable = true;
     private boolean loading = false;
+    private ImageView mImageView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class ListCoastFragment extends Fragment  {
 
         mainCard = (View) getActivity().findViewById(R.id.card_logo);
         listCards = (View) getActivity().findViewById(R.id.home_menu_for_card);
+        mImageView = (ImageView) getActivity().findViewById(R.id.buttonNewSms);
 
         mainCard.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -55,6 +60,16 @@ public class ListCoastFragment extends Fragment  {
                         listCards.setClickable(false);
                     }
                 }
+                return false;
+            }
+        });
+
+        mImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent mIntent = new Intent(getActivity(),SmsServis.class);
+                mIntent.putExtra("sms_body","123");
+                getActivity().startService(mIntent);
                 return false;
             }
         });
