@@ -56,11 +56,13 @@ public class LoadingWindow extends AppCompatActivity {
         if(!hasVisited){
 
             // insert layout with registration !!!
-            mySetting.edit().putBoolean("hasVisited",true).apply();
-            mySetting.edit().putString(MY_PASSWORD,"78321").apply();
-
+            mySetting.edit()
+                    .putBoolean("hasVisited",true)
+                    .apply();
+            mySetting.edit()
+                    .putString(MY_PASSWORD,"78321")
+                    .apply();
             intent = new Intent(LoadingWindow.this,HomePages.class);
-
         } else {
             intent = new Intent(LoadingWindow.this,MainActivity.class);
         }
