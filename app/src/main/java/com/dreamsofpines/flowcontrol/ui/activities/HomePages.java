@@ -2,20 +2,22 @@ package com.dreamsofpines.flowcontrol.ui.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.database.CostBaseHelper;
 import com.dreamsofpines.flowcontrol.data.database.CostCursorWrapper;
 import com.dreamsofpines.flowcontrol.data.database.CostDbSchema.CostTable;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
+import com.dreamsofpines.flowcontrol.data.storage.models.SmsService;
 import com.dreamsofpines.flowcontrol.ui.fragments.EmptyListCostFragment;
 import com.dreamsofpines.flowcontrol.ui.fragments.ListCoastFragment;
 
@@ -34,11 +36,14 @@ public class HomePages extends FragmentActivity {
     private List<Cost> mCosts;
     private FragmentTransaction mFragmentTransaction;
     private View menu,card;
+    private ImageView mImageView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_pages);
+        setContentView(R.layout.activity_home_pages);
+
+        mImageView = (ImageView) findViewById(R.id.buttonNewSms);
 
         mContext = this.getApplicationContext();
         mDatabase = new CostBaseHelper(mContext).getWritableDatabase();
@@ -57,6 +62,17 @@ public class HomePages extends FragmentActivity {
             mFragmentTransaction.replace(R.id.frameForRecycleView,mListCoastFragment);
         }
         mFragmentTransaction.commit();
+
+        mImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent mIntent = new Intent(HomePages.this,SmsService.class);
+                mIntent.putExtra("sms_body","123");
+                mContext.startService(mIntent);
+                return false;
+            }
+        });
+
     }
 
     public static ContentValues getContentValues(Cost cost){

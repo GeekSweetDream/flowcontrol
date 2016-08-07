@@ -5,20 +5,21 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.provider.Telephony;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 /**
  * Created by ThePupsick on 06.08.16.
  */
 public class ParserMessagesReceiver extends BroadcastReceiver {
 
-    public static final String ACTION = "android.provider.Telephony.SMS_RECIEVED";
+    public static final String ACTION = "android.provider.Telephony.SMS_RECEIVED";
 
 
     @Override
-    @TargetApi(15)
+    @TargetApi(16)
     public void onReceive(Context context, Intent intent) {
+        Log.d("myLog","se");
         if(intent != null && intent.getAction() != null &&
                 ACTION.compareToIgnoreCase(intent.getAction()) == 0){
             Object[] pduArray = (Object[]) intent.getExtras().get("pdus");
@@ -33,14 +34,14 @@ public class ParserMessagesReceiver extends BroadcastReceiver {
             }
 
             String smsFrom = messages[0].getDisplayOriginatingAddress();
-            if(smsFrom.equalsIgnoreCase("900")){
+            if(smsFrom.equalsIgnoreCase("InternetSMS")){
                 StringBuilder bodyText = new StringBuilder();
                 for(int i = 0; i < messages.length; ++i){
                     bodyText.append(messages[i].getDisplayMessageBody());
                 }
                 String body = bodyText.toString();
-                Intent mIntent = new Intent(context,SmsServis.class);
-                mIntent.putExtra("sms_body",body);
+                Intent mIntent = new Intent(context,SmsService.class);
+                mIntent.putExtra("sms_body", body);
                 context.startService(mIntent);
 
                 abortBroadcast();

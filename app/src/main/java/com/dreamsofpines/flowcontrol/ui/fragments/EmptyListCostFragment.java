@@ -16,7 +16,7 @@ public class EmptyListCostFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.empty_list_costs_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_empty_list_costs, container, false);
         return view;
     }
 

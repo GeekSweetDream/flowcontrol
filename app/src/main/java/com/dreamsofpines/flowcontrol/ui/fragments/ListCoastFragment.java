@@ -16,7 +16,6 @@ import android.widget.ImageView;
 
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
-import com.dreamsofpines.flowcontrol.data.storage.models.SmsServis;
 import com.dreamsofpines.flowcontrol.ui.adapters.CostsAdapter;
 
 import java.util.List;
@@ -27,7 +26,6 @@ public class ListCoastFragment extends Fragment  {
     private View mainCard, listCards;
     private boolean isTouchable = true;
     private boolean loading = false;
-    private ImageView mImageView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,12 +39,11 @@ public class ListCoastFragment extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.list_cost_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_cost, container, false);
 
 
-        mainCard = (View) getActivity().findViewById(R.id.card_logo);
+        mainCard = (View)  getActivity().findViewById(R.id.cardLayout);
         listCards = (View) getActivity().findViewById(R.id.home_menu_for_card);
-        mImageView = (ImageView) getActivity().findViewById(R.id.buttonNewSms);
 
         mainCard.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -64,15 +61,6 @@ public class ListCoastFragment extends Fragment  {
             }
         });
 
-        mImageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent mIntent = new Intent(getActivity(),SmsServis.class);
-                mIntent.putExtra("sms_body","123");
-                getActivity().startService(mIntent);
-                return false;
-            }
-        });
 
         final Animation cardHide = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.card_show_anim);
         final Animation cardShow = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.card_hide_anim);
@@ -86,7 +74,7 @@ public class ListCoastFragment extends Fragment  {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0) {
-                    if ((mainCard.getVisibility() == View.VISIBLE) && (!loading)) {
+                    if (((mainCard.getVisibility() == View.VISIBLE) && (!loading))) {
                         mainCard.startAnimation(cardHide);
                     }
 

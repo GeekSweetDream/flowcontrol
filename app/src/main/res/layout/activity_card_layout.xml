@@ -17,7 +17,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:background="@color/colorBlack"
+            android:background="@color/lighterBlue"
             android:layout_marginLeft="@dimen/medium_space_32"/>
         <TextView
             android:id="@+id/dateCosts"
@@ -27,6 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/small_space_10"
             android:text="123"
+            android:textColor="@color/lightBlue"
             android:textSize="15sp"/>
         <TextView
             android:id="@+id/costs"
@@ -37,12 +38,13 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/medium_space_21"
             android:text="123"
+            android:textColor="@color/lightBlue"
             android:textSize="@dimen/font_size_27"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/lightGrey">
+        android:background="@color/lighterBlue">
     </View>
 </android.support.v7.widget.CardView>
 </LinearLayout>

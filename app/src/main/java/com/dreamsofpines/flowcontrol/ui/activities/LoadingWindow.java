@@ -3,10 +3,8 @@ package com.dreamsofpines.flowcontrol.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dreamsofpines.flowcontrol.R;
@@ -25,7 +23,7 @@ public class LoadingWindow extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading_window);
+        setContentView(R.layout.activity_loading_window);
 
         int secondDelay = 1;
         new Handler().postDelayed(new Runnable() {

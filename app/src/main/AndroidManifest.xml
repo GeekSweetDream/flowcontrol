@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dreamsofpines.flowcontrol">
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -38,10 +39,10 @@
 
         <receiver android:name=".data.storage.models.ParserMessagesReceiver">
             <intent-filter android:priority="100">
-                <action android:name="android.provider.Telephony.SMS_RECIEVED"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
-        <service android:name=".data.storage.models.SmsServis"/>
+        <service android:name=".data.storage.models.SmsService"/>
 
     </application>
 

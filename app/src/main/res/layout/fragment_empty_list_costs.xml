@@ -10,5 +10,6 @@
         android:layout_height="wrap_content"
         android:textSize="32sp"
         android:gravity="center"
-        android:text="Costs list are empty"/>
+        android:text="Costs list are empty"
+        android:textColor="@color/lightBlue"/>
 </LinearLayout>
