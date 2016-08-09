@@ -13,4 +13,5 @@ public class CostDbSchema {
             public static final String DATE = "cost_Date";
         }
     }
+
 }

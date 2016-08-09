@@ -45,22 +45,22 @@ public class ListCoastFragment extends Fragment  {
         mainCard = (View)  getActivity().findViewById(R.id.cardLayout);
         listCards = (View) getActivity().findViewById(R.id.home_menu_for_card);
 
-        mainCard.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(isTouchable) {
-                    if (listCards.getVisibility() == View.INVISIBLE){
-                        listCards.setVisibility(View.VISIBLE);
-                        listCards.setClickable(true);
-                    } else {
-                        listCards.setVisibility(View.INVISIBLE);
-                        listCards.setClickable(false);
-                    }
-                }
-                return false;
-            }
-        });
-
+//        mainCard.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if(isTouchable) {
+//                    if (listCards.getVisibility() == View.INVISIBLE){
+//                        listCards.setVisibility(View.VISIBLE);
+//                        listCards.setClickable(true);
+//                    } else {
+//                        listCards.setVisibility(View.INVISIBLE);
+//                        listCards.setClickable(false);
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+//
 
         final Animation cardHide = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.card_show_anim);
         final Animation cardShow = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.card_hide_anim);

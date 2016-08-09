@@ -45,7 +45,9 @@ public class CostsAdapter extends RecyclerView.Adapter<CostsAdapter.CostsViewHol
         mCostList = costList;
     }
 
-
+    public void setCostList(List<Cost> costList) {
+        mCostList = costList;
+    }
 
     @Override
     public CostsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
