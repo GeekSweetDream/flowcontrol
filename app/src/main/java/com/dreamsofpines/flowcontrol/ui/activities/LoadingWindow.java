@@ -33,20 +33,23 @@ public class LoadingWindow extends AppCompatActivity {
                 finish();
             }
         },secondDelay * 1000);
-
-        // Create settings file
-        mySetting = getSharedPreferences(GlobalPreferences.getMySettings(), Context.MODE_PRIVATE);
-        // Check the first open
-        boolean hasVisited = mySetting.getBoolean("hasVisited", false);
+        Context AppContext = getApplicationContext();
+//        // Create settings file
+//        mySetting = getSharedPreferences(GlobalPreferences.getMySettings(), Context.MODE_PRIVATE);
+//        // Check the first open
+        boolean hasVisited = GlobalPreferences.isFirstOpen(AppContext);
         if(!hasVisited){
 
             // insert layout with registration !!!
-            mySetting.edit()
-                    .putBoolean("hasVisited",true)
-                    .apply();
-            mySetting.edit()
-                    .putString(GlobalPreferences.getMyPASSWORD(),"78321")
-                    .apply();
+
+            GlobalPreferences.setFirstOpen(AppContext);
+            GlobalPreferences.setMyPassword(AppContext, "78321");
+//            mySetting.edit()
+//                    .putBoolean("hasVisited",true)
+//                    .apply();
+//            mySetting.edit()
+//                    .putString(GlobalPreferences.getMyPASSWORD(),"78321")
+//                    .apply();
             intent = new Intent(LoadingWindow.this,HomePages.class);
         } else {
             intent = new Intent(LoadingWindow.this,MainActivity.class);

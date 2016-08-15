@@ -24,9 +24,9 @@ public class ParserMessagesReceiver extends BroadcastReceiver {
                 ACTION.compareToIgnoreCase(intent.getAction()) == 0){
             Object[] pduArray = (Object[]) intent.getExtras().get("pdus");
             SmsMessage[] messages = new SmsMessage[pduArray.length];
-            int curentVersion = Build.VERSION.SDK_INT;
+            int currentVersion = Build.VERSION.SDK_INT;
             for(int i = 0; i <pduArray.length; ++i){
-                if(curentVersion >= 23) {
+                if(currentVersion >= 23) {
                     messages[i] = SmsMessage.createFromPdu((byte[]) pduArray[i], "3gpp");
                 }else{
                     messages[i] = SmsMessage.createFromPdu((byte[]) pduArray[i]);
@@ -34,7 +34,7 @@ public class ParserMessagesReceiver extends BroadcastReceiver {
             }
 
             String smsFrom = messages[0].getDisplayOriginatingAddress();
-            if(smsFrom.equalsIgnoreCase("900")){
+//            if(smsFrom.equalsIgnoreCase("900")){
                 StringBuilder bodyText = new StringBuilder();
                 for(int i = 0; i < messages.length; ++i){
                     bodyText.append(messages[i].getDisplayMessageBody());
@@ -45,7 +45,7 @@ public class ParserMessagesReceiver extends BroadcastReceiver {
                 context.startService(mIntent);
 
                 abortBroadcast();
-            }
+//            }
 
         }
     }

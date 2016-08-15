@@ -69,6 +69,7 @@ public class ListCoastFragment extends Fragment  {
         recyclerViewVert.setLayoutManager(lim);
         recyclerViewVert.setHasFixedSize(true);
 
+
         recyclerViewVert.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
@@ -78,11 +79,13 @@ public class ListCoastFragment extends Fragment  {
                         mainCard.startAnimation(cardHide);
                     }
 
+
                 }
                 if (dy < 0) {
                     if ((mainCard.getVisibility() == View.INVISIBLE) && (!loading)) {
                         mainCard.startAnimation(cardShow);
                     }
+
                 }
             }
         });

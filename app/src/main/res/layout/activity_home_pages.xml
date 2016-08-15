@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activities.HomePages"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite">
     <FrameLayout
         android:id="@+id/frameForRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/emptyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="Costs list are empty"
+            android:textColor="@color/lightBlue"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible"/>
     </FrameLayout>
+
     <ImageView
         android:id="@+id/cardLayout"
         android:layout_width="250dp"
@@ -28,16 +39,6 @@
         android:background="@color/lightGrey"
         android:visibility="invisible">
     </View>
-    <TextView
-        android:id="@+id/emptyList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:gravity="center"
-        android:text="Costs list are empty"
-        android:textColor="@color/lightBlue"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"/>
     <ImageView
         android:id="@+id/buttonNewSms"
         android:src="@drawable/button_drawable"

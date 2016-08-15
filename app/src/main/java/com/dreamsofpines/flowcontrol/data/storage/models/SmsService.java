@@ -91,7 +91,7 @@ public class SmsService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String body = intent.getExtras().getString("sms_body");
         String[] costNew = findMainInformation(body);
-        if(0 != costNew[0].length()) {
+        if(costNew[0].length() != 0) {
             SQLiteDatabase mDb = new  CostBaseHelper(getApplicationContext()).getWritableDatabase();
             CostBaseHelper.addCost(mDb, new Cost("23", costNew[1], "-"+costNew[2], "23123"));
             showNotification(costNew[2]);
