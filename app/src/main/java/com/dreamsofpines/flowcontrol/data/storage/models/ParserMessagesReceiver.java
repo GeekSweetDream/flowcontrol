@@ -34,6 +34,7 @@ public class ParserMessagesReceiver extends BroadcastReceiver {
             }
 
             String smsFrom = messages[0].getDisplayOriginatingAddress();
+
 //            if(smsFrom.equalsIgnoreCase("900")){
                 StringBuilder bodyText = new StringBuilder();
                 for(int i = 0; i < messages.length; ++i){
