@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activities.HomePages"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite">
     <FrameLayout
         android:id="@+id/frameForRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/emptyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:text="Costs list are empty"
+            android:textColor="@color/lightBlue"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible"/>
     </FrameLayout>
-    <fragment
-        android:id="@+id/card_logo"
-        android:name="com.dreamsofpines.flowcontrol.ui.fragments.CardLogoFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <ImageView
+        android:id="@+id/cardLayout"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        tools:layout="@layout/card_view_fragment">
-    </fragment>
+        android:src="@drawable/card_drawable">
+    </ImageView>
     <View
         android:id="@+id/home_menu_for_card"
         android:layout_width="match_parent"
@@ -30,12 +40,12 @@
         android:visibility="invisible">
     </View>
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/buttonNewSms"
+        android:src="@drawable/button_drawable"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/medium_space_21"
-        android:layout_marginBottom="@dimen/medium_space_21"
-        android:background="@color/colorAccent"/>
-
+        android:layout_marginBottom="@dimen/medium_space_21"/>
 </RelativeLayout>

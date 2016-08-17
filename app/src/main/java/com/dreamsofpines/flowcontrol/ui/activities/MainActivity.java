@@ -13,18 +13,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dreamsofpines.flowcontrol.R;
+import com.dreamsofpines.flowcontrol.data.storage.preferenses.GlobalPreferences;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private Context AppContext;
     private TextView enterBtn;
     private TextInputLayout inputPassword;
-    private SharedPreferences mySetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mySetting = getSharedPreferences(LoadingWindow.getMySettings(), Context.MODE_PRIVATE);
+        AppContext = getApplicationContext();
+//        mySetting = getSharedPreferences(GlobalPreferences.getMySettings(), Context.MODE_PRIVATE);
         inputPassword = (TextInputLayout) findViewById(R.id.passwordWrapper);
         enterBtn = (TextView) findViewById(R.id.buttonEnter);
         enterBtn.setOnClickListener(this);
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        if(mySetting.contains(LoadingWindow.getMyPASSWORD())){
-            String password = mySetting.getString(LoadingWindow.getMyPASSWORD(),"");
+        if(GlobalPreferences.getMyPASSWORD(AppContext) != null){
+            String password = GlobalPreferences.getMyPASSWORD(AppContext);
             if(password.compareTo(inputPassword.getEditText().getText().toString()) == 0){
                 inputPassword.setErrorEnabled(false);
                 Intent intent = new Intent(MainActivity.this,HomePages.class);

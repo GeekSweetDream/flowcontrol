@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.dreamsofpines.flowcontrol.R;
 import com.dreamsofpines.flowcontrol.data.storage.models.Cost;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,12 +45,14 @@ public class CostsAdapter extends RecyclerView.Adapter<CostsAdapter.CostsViewHol
         mCostList = costList;
     }
 
-
+    public void setCostList(List<Cost> costList) {
+        mCostList = costList;
+    }
 
     @Override
     public CostsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_layout,parent,false);
+                .inflate(R.layout.activity_card_layout,parent,false);
         return new CostsViewHolder(itemView);
 
     }
